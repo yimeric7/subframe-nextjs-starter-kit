@@ -64,6 +64,33 @@ export default function FREDDataLayout({ children }: FREDDataLayoutProps) {
           {children}
         </div>
       </div>
+      
+      {/* Footer */}
+      <footer className="mt-12 border-t border-neutral-200 py-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-center gap-4 text-center">
+            <Link href="/" className="flex items-center gap-2">
+              <SubframeCore.Icon 
+                name="FeatherBarChart2" 
+                className="text-heading-3 font-heading-3 text-brand-600" 
+              />
+              <span className="text-heading-3 font-heading-3 text-default-font">FRED Data Analytics</span>
+            </Link>
+            <a 
+              href="https://x.com/thezenlin" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-neutral-600 hover:text-brand-600 transition-colors"
+            >
+              <SubframeCore.Icon name="FeatherTwitter" />
+              <span>@thezenlin</span>
+            </a>
+            <p className="text-sm text-neutral-500 mt-4">
+              This is just a project for fun, don't take seriously
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 } 
