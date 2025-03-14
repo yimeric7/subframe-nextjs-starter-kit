@@ -6,8 +6,29 @@ import { Button } from '../ui/components/Button';
 import Link from 'next/link';
 import * as SubframeCore from "@subframe/core";
 import { Tabs } from '../ui/components/Tabs';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  // Use a state to ensure hydration consistency
+  const [isClient, setIsClient] = useState(false);
+  
+  // Only run after hydration to prevent server/client mismatch
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // If not client yet, render a minimal placeholder with matching structure
+  if (!isClient) {
+    return (
+      <div className="container max-w-none flex h-full w-full flex-col items-center gap-4 bg-default-background py-6">
+        <div className="flex w-full max-w-[768px] flex-col items-center gap-6">
+          {/* Placeholder content while hydrating */}
+        </div>
+      </div>
+    );
+  }
+
+  // Main component rendering after hydration
   return (
     <div className="container max-w-none flex h-full w-full flex-col items-center gap-4 bg-default-background py-6">
       <div className="flex w-full max-w-[768px] flex-col items-center gap-6">
