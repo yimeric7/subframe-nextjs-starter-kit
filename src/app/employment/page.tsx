@@ -63,7 +63,6 @@ export default function Employment() {
                 <div className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
                   <Link href="/indicators/unemployment-rate" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="1"
                       title="Unemployment Rate"
                       desc="Percentage of labor force unemployed"
@@ -74,7 +73,6 @@ export default function Employment() {
                   </Link>
                   <Link href="/indicators/nonfarm-payrolls" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="2"
                       title="Job Creation"
                       desc="Monthly non-farm payroll changes"
@@ -91,7 +89,6 @@ export default function Employment() {
                 <div className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
                   <Link href="/indicators/labor-force-participation" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="3"
                       title="Labor Participation"
                       desc="Workforce participation rate"
@@ -106,7 +103,6 @@ export default function Employment() {
                   </Link>
                   <Link href="/indicators/average-hourly-earnings" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="4"
                       title="Wage Growth"
                       desc="Average hourly earnings change"
