@@ -6,86 +6,58 @@
 
 import React from "react";
 import * as SubframeCore from "@subframe/core";
+import { motion } from 'framer-motion';
+
+interface TabsRootProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
 
 interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   active?: boolean;
-  disabled?: boolean;
-  icon?: SubframeCore.IconName;
-  children?: React.ReactNode;
-  className?: string;
+  icon?: React.ReactNode;
+  children: React.ReactNode;
 }
 
+const TabsRoot = React.forwardRef<HTMLElement, TabsRootProps>(
+  function TabsRoot({ className, children, ...otherProps }: TabsRootProps, ref) {
+    return (
+      <div
+        className={SubframeCore.twClassNames(
+          "flex h-10 min-w-full flex-none flex-row items-center gap-4 overflow-auto whitespace-nowrap p-0",
+          className
+        )}
+        ref={ref as any}
+        {...otherProps}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+
 const Item = React.forwardRef<HTMLElement, ItemProps>(function Item(
-  {
-    active = false,
-    disabled = false,
-    icon = null,
-    children,
-    className,
-    ...otherProps
-  }: ItemProps,
+  { active = false, icon, children, className, ...otherProps }: ItemProps,
   ref
 ) {
   return (
     <div
       className={SubframeCore.twClassNames(
-        "group/d5612535 flex h-10 cursor-pointer items-center justify-center gap-2 border-b border-solid border-neutral-border px-2.5 py-0.5",
-        {
-          "border-b-2 border-solid border-brand-600 px-2.5 pt-0.5 pb-px hover:border-b-2 hover:border-solid hover:border-brand-600":
-            active,
-        },
+        "group flex h-10 cursor-pointer items-center gap-2 border-b-2 border-transparent px-1 py-2 transition-all duration-200 hover:text-brand-600 relative",
+        active
+          ? "border-b-2 border-brand-600 text-body-semibold font-body-semibold text-brand-600"
+          : "text-body font-body text-neutral-600",
         className
       )}
       ref={ref as any}
       {...otherProps}
     >
-      <SubframeCore.Icon
-        className={SubframeCore.twClassNames(
-          "text-body font-body text-subtext-color group-hover/d5612535:text-default-font",
-          {
-            "text-neutral-400 group-hover/d5612535:text-neutral-400": disabled,
-            "text-brand-700 group-hover/d5612535:text-brand-700": active,
-          }
-        )}
-        name={icon}
-      />
-      {children ? (
-        <span
-          className={SubframeCore.twClassNames(
-            "text-body-bold font-body-bold text-subtext-color group-hover/d5612535:text-default-font",
-            {
-              "text-neutral-400 group-hover/d5612535:text-neutral-400":
-                disabled,
-              "text-brand-700 group-hover/d5612535:text-brand-700": active,
-            }
-          )}
-        >
-          {children}
-        </span>
-      ) : null}
-    </div>
-  );
-});
-
-interface TabsRootProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode;
-  className?: string;
-}
-
-const TabsRoot = React.forwardRef<HTMLElement, TabsRootProps>(function TabsRoot(
-  { children, className, ...otherProps }: TabsRootProps,
-  ref
-) {
-  return (
-    <div
-      className={SubframeCore.twClassNames("flex w-full items-end", className)}
-      ref={ref as any}
-      {...otherProps}
-    >
-      {children ? (
-        <div className="flex items-start self-stretch">{children}</div>
-      ) : null}
-      <div className="flex grow shrink-0 basis-0 flex-col items-start gap-2 self-stretch border-b border-solid border-neutral-border" />
+      {icon && <div className="flex items-center">{icon}</div>}
+      <div className="flex items-center">
+        <span className="flex">{children}</span>
+      </div>
+      {active && (
+        <div className="absolute -bottom-[2px] left-0 right-0 h-0.5 bg-brand-600" />
+      )}
     </div>
   );
 });

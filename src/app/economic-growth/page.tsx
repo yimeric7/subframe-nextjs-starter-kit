@@ -63,7 +63,6 @@ export default function EconomicGrowth() {
                 <div className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
                   <Link href="/indicators/gdp-growth-rate" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="1"
                       title="GDP Growth Rate"
                       desc="Quarter-over-quarter GDP growth"
@@ -78,7 +77,6 @@ export default function EconomicGrowth() {
                   </Link>
                   <Link href="/indicators/industrial-production" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="2"
                       title="Industrial Production"
                       desc="Industrial Production Index"
@@ -95,7 +93,6 @@ export default function EconomicGrowth() {
                 <div className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
                   <Link href="/indicators/retail-sales" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="3"
                       title="Retail Sales"
                       desc="Monthly Retail Trade Report"
@@ -106,7 +103,6 @@ export default function EconomicGrowth() {
                   </Link>
                   <Link href="/indicators/consumer-spending" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="4"
                       title="Consumer Spending"
                       desc="Personal Consumption Expenditures"

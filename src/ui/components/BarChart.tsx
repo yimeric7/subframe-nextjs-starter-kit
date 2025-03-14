@@ -6,35 +6,44 @@
 
 import React from "react";
 import * as SubframeCore from "@subframe/core";
+import { motion } from 'framer-motion';
 
-interface BarChartRootProps
-  extends React.ComponentProps<typeof SubframeCore.BarChart> {
+export interface BarChartProps {
+  data: any[];
+  index: string;
+  categories: string[];
   stacked?: boolean;
   className?: string;
 }
 
-const BarChartRoot = React.forwardRef<HTMLElement, BarChartRootProps>(
-  function BarChartRoot(
-    { stacked = false, className, ...otherProps }: BarChartRootProps,
-    ref
-  ) {
-    return (
-      <SubframeCore.BarChart
-        className={SubframeCore.twClassNames("h-80 w-full", className)}
-        ref={ref as any}
-        stacked={stacked}
-        colors={[
-          "#737373",
-          "#e5e5e5",
-          "#262626",
-          "#d4d4d4",
-          "#404040",
-          "#a3a3a3",
-        ]}
-        {...otherProps}
-      />
-    );
-  }
-);
-
-export const BarChart = BarChartRoot;
+export function BarChart({
+  data,
+  index,
+  categories,
+  stacked = false,
+  className = '',
+}: BarChartProps) {
+  return (
+    <div className={className}>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ 
+          duration: 0.5, 
+          delay: 0.3,
+          type: "spring", 
+          stiffness: 300,
+          damping: 30
+        }}
+        className="w-full h-full"
+      >
+        <SubframeCore.BarChart
+          data={data}
+          index={index}
+          categories={categories}
+          stacked={stacked}
+        />
+      </motion.div>
+    </div>
+  );
+}

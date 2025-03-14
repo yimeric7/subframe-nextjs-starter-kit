@@ -6,33 +6,41 @@
 
 import React from "react";
 import * as SubframeCore from "@subframe/core";
+import { motion } from 'framer-motion';
 
-interface LineChartRootProps
-  extends React.ComponentProps<typeof SubframeCore.LineChart> {
+export interface LineChartProps {
+  data: any[];
+  index: string;
+  categories: string[];
   className?: string;
 }
 
-const LineChartRoot = React.forwardRef<HTMLElement, LineChartRootProps>(
-  function LineChartRoot(
-    { className, ...otherProps }: LineChartRootProps,
-    ref
-  ) {
-    return (
-      <SubframeCore.LineChart
-        className={SubframeCore.twClassNames("h-80 w-full", className)}
-        ref={ref as any}
-        colors={[
-          "#737373",
-          "#e5e5e5",
-          "#262626",
-          "#d4d4d4",
-          "#404040",
-          "#a3a3a3",
-        ]}
-        {...otherProps}
-      />
-    );
-  }
-);
-
-export const LineChart = LineChartRoot;
+export function LineChart({
+  data,
+  index,
+  categories,
+  className = '',
+}: LineChartProps) {
+  return (
+    <div className={className}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ 
+          duration: 0.7, 
+          delay: 0.2,
+          type: "spring", 
+          stiffness: 300,
+          damping: 30
+        }}
+        className="w-full h-full"
+      >
+        <SubframeCore.LineChart
+          data={data}
+          index={index}
+          categories={categories}
+        />
+      </motion.div>
+    </div>
+  );
+}

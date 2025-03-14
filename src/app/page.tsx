@@ -7,6 +7,7 @@ import Link from 'next/link';
 import * as SubframeCore from "@subframe/core";
 import { Tabs } from '../ui/components/Tabs';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Home() {
   // Use a state to ensure hydration consistency
@@ -16,6 +17,23 @@ export default function Home() {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      }
+    }
+  };
+  
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } }
+  };
 
   // If not client yet, render a minimal placeholder with matching structure
   if (!isClient) {
@@ -32,24 +50,51 @@ export default function Home() {
   return (
     <div className="container max-w-none flex h-full w-full flex-col items-center gap-4 bg-default-background py-6">
       <div className="flex w-full max-w-[768px] flex-col items-center gap-6">
-        <div className="flex w-full max-w-[576px] flex-col items-center justify-center gap-6 px-6 py-6 hover:opacity-80 transition-all duration-300 ease-in-out">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex w-full max-w-[576px] flex-col items-center justify-center gap-6 px-6 py-6 hover:opacity-80 transition-all duration-300 ease-in-out">
           <div className="flex w-full flex-col items-center justify-center gap-2">
-            <SubframeCore.Icon
-              className="text-heading-1 font-heading-1 text-default-font animate-pulse"
-              name="FeatherBarChart2"
-            />
+            <motion.div
+              animate={{ 
+                scale: [1, 1.05, 1],
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            >
+              <SubframeCore.Icon
+                className="text-heading-1 font-heading-1 text-default-font"
+                name="FeatherBarChart2"
+              />
+            </motion.div>
             <div className="flex w-full flex-col items-center justify-center gap-2">
-              <span className="w-full text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-1 mobile:font-heading-1">
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="w-full text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-1 mobile:font-heading-1">
                 Federal Reserve Economic Data
-              </span>
-              <span className="text-body font-body text-subtext-color text-center">
+              </motion.span>
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="text-body font-body text-subtext-color text-center">
                 Explore key economic indicators and data released by the Federal Reserve
-              </span>
+              </motion.span>
             </div>
           </div>
-        </div>
+        </motion.div>
         <div className="flex w-full flex-col items-start gap-12">
-          <div className="flex w-full flex-col items-start gap-12 overflow-auto mobile:h-auto mobile:w-auto mobile:flex-none mobile:overflow-auto mobile:self-stretch">
+          <motion.div 
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="flex w-full flex-col items-start gap-12 overflow-auto mobile:h-auto mobile:w-auto mobile:flex-none mobile:overflow-auto mobile:self-stretch">
             <Tabs>
               <Tabs.Item active={true}>Popular Indicators</Tabs.Item>
               <Link href="/monetary-policy">
@@ -62,22 +107,29 @@ export default function Home() {
                 <Tabs.Item>Employment</Tabs.Item>
               </Link>
             </Tabs>
-          </div>
+          </motion.div>
           <div className="flex w-full flex-col items-center gap-16">
             <div className="flex w-full flex-col items-start gap-4">
-              <div className="flex w-full flex-col items-start gap-1">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7, duration: 0.5 }}
+                className="flex w-full flex-col items-start gap-1">
                 <span className="w-full text-heading-2 font-heading-2 text-default-font">
                   Featured Indicators
                 </span>
                 <span className="w-full text-body font-body text-subtext-color">
                   Key economic metrics updated in real-time
                 </span>
-              </div>
-              <div className="flex w-full flex-col items-start gap-4">
-                <div className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
+              </motion.div>
+              <motion.div
+                variants={container}
+                initial="hidden"
+                animate="show"
+                className="flex w-full flex-col items-start gap-4">
+                <motion.div variants={item} className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
                   <Link href="/indicators/gdp-growth-rate" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="1"
                       title="GDP Growth Rate"
                       desc="Quarterly percent change in real gross domestic product"
@@ -92,7 +144,6 @@ export default function Home() {
                   </Link>
                   <Link href="/indicators/inflation-rate" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="2"
                       title="Inflation Rate (CPI)"
                       desc="Consumer Price Index for All Urban Consumers: All Items"
@@ -105,11 +156,10 @@ export default function Home() {
                       />
                     </ExploreCard>
                   </Link>
-                </div>
-                <div className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
+                </motion.div>
+                <motion.div variants={item} className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
                   <Link href="/indicators/unemployment-rate" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="3"
                       title="Unemployment Rate"
                       desc="Civilian Unemployment Rate, Seasonally Adjusted"
@@ -124,7 +174,6 @@ export default function Home() {
                   </Link>
                   <Link href="/indicators/federal-funds-rate" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="4"
                       title="Federal Funds Rate"
                       desc="Effective Federal Funds Rate, Daily"
@@ -137,8 +186,8 @@ export default function Home() {
                       />
                     </ExploreCard>
                   </Link>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </div>

@@ -63,7 +63,6 @@ export default function MonetaryPolicy() {
                 <div className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
                   <Link href="/indicators/federal-funds-rate" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="1"
                       title="Federal Funds Rate"
                       desc="The interest rate at which depository institutions lend reserve balances to other depository institutions overnight"
@@ -78,7 +77,6 @@ export default function MonetaryPolicy() {
                   </Link>
                   <Link href="/indicators/money-supply" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="2"
                       title="Money Supply (M2)"
                       desc="A measure of the money supply that includes cash, checking deposits, and easily convertible near money"
@@ -95,7 +93,6 @@ export default function MonetaryPolicy() {
                 <div className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
                   <Link href="/indicators/treasury-yields" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="3"
                       title="Treasury Yields"
                       desc="Interest rates on U.S. Treasury debt securities, which serve as benchmarks for other interest rates"
@@ -110,7 +107,6 @@ export default function MonetaryPolicy() {
                   </Link>
                   <Link href="/indicators/fed-balance-sheet" className="w-full">
                     <ExploreCard
-                      className="hover:scale-105 transition-all duration-300 ease-in-out"
                       count="4"
                       title="Fed Balance Sheet"
                       desc="The Federal Reserve's holdings of securities, loans, and other assets it has acquired through its monetary policy operations"
