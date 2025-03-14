@@ -15,6 +15,7 @@ interface TabsRootProps extends React.HTMLAttributes<HTMLDivElement> {
 interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   active?: boolean;
   icon?: React.ReactNode;
+  disabled?: boolean;
   children: React.ReactNode;
 }
 
@@ -36,7 +37,7 @@ const TabsRoot = React.forwardRef<HTMLElement, TabsRootProps>(
 );
 
 const Item = React.forwardRef<HTMLElement, ItemProps>(function Item(
-  { active = false, icon, children, className, ...otherProps }: ItemProps,
+  { active = false, icon, disabled = false, children, className, ...otherProps }: ItemProps,
   ref
 ) {
   return (
@@ -46,6 +47,7 @@ const Item = React.forwardRef<HTMLElement, ItemProps>(function Item(
         active
           ? "border-b-2 border-brand-600 text-body-semibold font-body-semibold text-brand-600"
           : "text-body font-body text-neutral-600",
+        disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : "",
         className
       )}
       ref={ref as any}

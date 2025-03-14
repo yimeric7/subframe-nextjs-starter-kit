@@ -27,5 +27,11 @@
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "overrides": {
+    "react-remove-scroll": {
+      "react": "^19.0.0",
+      "@types/react": "^19"
+    }
   }
 }
