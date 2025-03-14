@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Add Edge Runtime configuration for Cloudflare Pages
+export const runtime = 'edge';
+
 const FRED_API_KEY = '2b0a6b861eeaa2dee0bb6c5628dd822a';
 const FRED_API_BASE_URL = 'https://api.stlouisfed.org/fred';
 

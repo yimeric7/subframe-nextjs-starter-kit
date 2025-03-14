@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cloudflare-build": "npm install --legacy-peer-deps && npm run build"
+    "cloudflare-build": "npx @cloudflare/next-on-pages@1"
   },
   "dependencies": {
     "@subframe/core": "^1.137.0",

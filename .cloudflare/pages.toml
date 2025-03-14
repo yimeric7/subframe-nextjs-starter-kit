@@ -1,0 +1,17 @@
+# Configuration for Cloudflare Pages deployment
+
+# Enable Node.js compatibility mode for better Next.js support
+[build]
+command = "npx @cloudflare/next-on-pages@1"
+
+[build.environment]
+NODE_VERSION = "20"
+
+# Compatibility flags for Cloudflare Workers
+[compatibility_flags]
+nodejs_compat = true  # Enable Node.js compatibility
+
+# Routes configuration
+[[routes]]
+pattern = "/api/*"
+script = ".vercel/output/functions/api/fred.func/index.js" 

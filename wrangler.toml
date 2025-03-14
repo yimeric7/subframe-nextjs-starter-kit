@@ -1,2 +1,24 @@
+# Configuration for Cloudflare Pages
+name = "subframe-nextjs-starter-kit"
+
+# Build settings
 [build]
-command = "npm install --legacy-peer-deps && npm run build" 
+command = "npm run build"
+
+# Build output directory (where static files are placed)
+[build.upload]
+format = "directory"
+dir = ".vercel/output/static"
+
+# Routes configuration
+[routes]
+pattern = "/api/*"
+script = "/api"
+
+# Environment configuration for the build
+[build.environment]
+NODE_VERSION = "20.11.0"
+
+# Output directory for Pages
+[site]
+pages_build_output_dir = ".vercel/output/static" 

@@ -1,0 +1,15 @@
+{
+  "compatibility_flags": ["nodejs_compat"],
+  "main": ".vercel/output/static/index.html",
+  "routes": [
+    {
+      "pattern": "/api/*",
+      "script": "api"
+    }
+  ],
+  "bindings": {
+    "FRED_API_KEY": {
+      "value": "2b0a6b861eeaa2dee0bb6c5628dd822a"
+    }
+  }
+}
