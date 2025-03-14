@@ -1,47 +1,127 @@
-import Image from "next/image";
+'use client';
+
+import { ExploreCard } from '../ui/components/ExploreCard';
+import { IconWithBackground } from '../ui/components/IconWithBackground';
+import { Button } from '../ui/components/Button';
+import Link from 'next/link';
+import * as SubframeCore from "@subframe/core";
+import { Tabs } from '../ui/components/Tabs';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-8">
-      <Image
-        src="subframe-logo.svg"
-        width={112}
-        height={20}
-        alt="Subframe logo"
-      />
-
-      <div className="flex flex-col gap-1 mt-20">
-        <div className="relative mx-auto max-w-4xl gap-12 px-6 lg:px-8">
-          <h1 className="text-4xl text-center font-semibold tracking-tight sm:text-6xl sm:leading-[4.25rem]">
-            Welcome to your Subframe Next.js Starter Kit
-          </h1>
+    <div className="container max-w-none flex h-full w-full flex-col items-center gap-4 bg-default-background py-6">
+      <div className="flex w-full max-w-[768px] flex-col items-center gap-6">
+        <div className="flex w-full max-w-[576px] flex-col items-center justify-center gap-6 px-6 py-6 hover:opacity-80 transition-all duration-300 ease-in-out">
+          <div className="flex w-full flex-col items-center justify-center gap-2">
+            <SubframeCore.Icon
+              className="text-heading-1 font-heading-1 text-default-font animate-pulse"
+              name="FeatherBarChart2"
+            />
+            <div className="flex w-full flex-col items-center justify-center gap-2">
+              <span className="w-full text-heading-1 font-heading-1 text-default-font text-center mobile:text-heading-1 mobile:font-heading-1">
+                Federal Reserve Economic Data
+              </span>
+              <span className="text-body font-body text-subtext-color text-center">
+                Explore key economic indicators and data released by the Federal Reserve
+              </span>
+            </div>
+          </div>
         </div>
-        <div className="relative mx-auto max-w-2xl gap-12 px-6 lg:px-8">
-          <div className="mt-6 text-lg text-base sm:text-lg text-center max-w-">
-            Use this project to kickstart Subframe. It includes configuration
-            files, dependencies you will need, and a clean slate for getting
-            started.
+        <div className="flex w-full flex-col items-start gap-12">
+          <div className="flex w-full flex-col items-start gap-12 overflow-auto mobile:h-auto mobile:w-auto mobile:flex-none mobile:overflow-auto mobile:self-stretch">
+            <Tabs>
+              <Tabs.Item active={true}>Popular Indicators</Tabs.Item>
+              <Link href="/monetary-policy">
+                <Tabs.Item>Monetary Policy</Tabs.Item>
+              </Link>
+              <Link href="/economic-growth">
+                <Tabs.Item>Economic Growth</Tabs.Item>
+              </Link>
+              <Link href="/employment">
+                <Tabs.Item>Employment</Tabs.Item>
+              </Link>
+            </Tabs>
+          </div>
+          <div className="flex w-full flex-col items-center gap-16">
+            <div className="flex w-full flex-col items-start gap-4">
+              <div className="flex w-full flex-col items-start gap-1">
+                <span className="w-full text-heading-2 font-heading-2 text-default-font">
+                  Featured Indicators
+                </span>
+                <span className="w-full text-body font-body text-subtext-color">
+                  Key economic metrics updated in real-time
+                </span>
+              </div>
+              <div className="flex w-full flex-col items-start gap-4">
+                <div className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
+                  <Link href="/indicators/gdp-growth-rate" className="w-full">
+                    <ExploreCard
+                      className="hover:scale-105 transition-all duration-300 ease-in-out"
+                      count="1"
+                      title="GDP Growth Rate"
+                      desc="Quarterly percent change in real gross domestic product"
+                      metadata="Updated: Q4 2023"
+                    >
+                      <IconWithBackground 
+                        size="large" 
+                        icon="FeatherTrendingUp" 
+                        variant="success"
+                      />
+                    </ExploreCard>
+                  </Link>
+                  <Link href="/indicators/inflation-rate" className="w-full">
+                    <ExploreCard
+                      className="hover:scale-105 transition-all duration-300 ease-in-out"
+                      count="2"
+                      title="Inflation Rate (CPI)"
+                      desc="Consumer Price Index for All Urban Consumers: All Items"
+                      metadata="Updated: March 2024"
+                    >
+                      <IconWithBackground
+                        variant="warning"
+                        size="large"
+                        icon="FeatherDollarSign"
+                      />
+                    </ExploreCard>
+                  </Link>
+                </div>
+                <div className="flex w-full items-start gap-4 mobile:flex-col mobile:flex-nowrap mobile:gap-4">
+                  <Link href="/indicators/unemployment-rate" className="w-full">
+                    <ExploreCard
+                      className="hover:scale-105 transition-all duration-300 ease-in-out"
+                      count="3"
+                      title="Unemployment Rate"
+                      desc="Civilian Unemployment Rate, Seasonally Adjusted"
+                      metadata="Updated: March 2024"
+                    >
+                      <IconWithBackground
+                        variant="error"
+                        size="large"
+                        icon="FeatherUsers"
+                      />
+                    </ExploreCard>
+                  </Link>
+                  <Link href="/indicators/federal-funds-rate" className="w-full">
+                    <ExploreCard
+                      className="hover:scale-105 transition-all duration-300 ease-in-out"
+                      count="4"
+                      title="Federal Funds Rate"
+                      desc="Effective Federal Funds Rate, Daily"
+                      metadata="Updated: Today"
+                    >
+                      <IconWithBackground
+                        variant="brand"
+                        size="large"
+                        icon="FeatherPercent"
+                      />
+                    </ExploreCard>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <div className="flex gap-2 max-w-md mt-12 gap-4">
-        <a
-          className="rounded-lg bg-slate-950 text-white px-4 py-2 text-center"
-          href="https://app.subframe.com/library?component=installation"
-          target="_blank"
-        >
-          Install Subframe
-        </a>
-
-        <a
-          className="rounded-lg text-slate-950 px-4 py-2 text-center border border-slate-300"
-          href="https://www.loom.com/embed/6b6a31569e1540d7a69a18b8620bf51a"
-          target="_blank"
-        >
-          See how it works
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }

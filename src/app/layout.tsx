@@ -1,9 +1,10 @@
+import FREDDataLayout from "../ui/layouts/FREDDataLayout";
 import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Subframe Next.js Starter",
-  description: "Your starter kit for integrating Subframe into Next.js",
+  title: "FRED Data Analytics",
+  description: "Explore and analyze Federal Reserve Economic Data with powerful visualization tools",
 };
 
 export default function RootLayout({
@@ -22,12 +23,14 @@ export default function RootLayout({
         />
         {/* eslint-disable-next-line */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
           rel="stylesheet"
         />
       </head>
 
-      <body className="h-full">{children}</body>
+      <body className="h-full bg-white font-sans">
+        <FREDDataLayout>{children}</FREDDataLayout>
+      </body>
     </html>
   );
 }
