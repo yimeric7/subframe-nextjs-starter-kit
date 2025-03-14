@@ -126,7 +126,7 @@ export default function FREDDataLayout({ children }: FREDDataLayoutProps) {
               transition={{ delay: 0.8, duration: 0.5 }}
               className="text-sm text-neutral-500 mt-4"
             >
-              This is just a project for fun, don't take seriously
+              This is just a project for fun, don&apos;t take seriously
             </motion.p>
           </div>
         </div>

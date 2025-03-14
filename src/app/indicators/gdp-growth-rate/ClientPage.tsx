@@ -187,7 +187,7 @@ export function ClientGDPGrowthRate() {
         </span>
         <div className="flex flex-col gap-2">
           <span className="text-body font-body text-neutral-600">
-            Economists project moderate growth of approximately 2.8% for Q1 2024, with consumer spending expected to remain resilient despite persistent inflation and high interest rates. The Federal Reserve's monetary policy decisions will continue to influence economic growth throughout 2024.
+            Economists project moderate growth of approximately 2.8% for Q1 2024, with consumer spending expected to remain resilient despite persistent inflation and high interest rates. The Federal Reserve&apos;s monetary policy decisions will continue to influence economic growth throughout 2024.
           </span>
           <span className="text-body font-body text-neutral-600">
             Key risks to the outlook include geopolitical tensions, potential energy price volatility, and the lagged effects of monetary tightening on business investment and consumer spending.
